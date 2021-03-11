@@ -1,11 +1,20 @@
-const Movie = require('../model/Movie.js');
+const Movie = require("../model/Movie.js");
 
 module.exports = {
+  createMovie: async (req, res) => {
+    // res.send("WE'RE GOOD!!!")
+    try {
+      let newMovie = new Movie({
+        movie: req.body.movie,
+      });
 
-    createMovie: async (req, res) => {
+      let savedMovie = await newMovie.save();
 
-        res.send("WE'RE GOOD!!!")
-        
-
+      res.json({
+        newMovie: savedMovie,
+      });
+    } catch (e) {
+      res.status(500).json({ error: e.message });
     }
-}
+  },
+};
