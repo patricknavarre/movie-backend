@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var { createMovie, 
     getAllMovie, 
-    deleteByID } = require("./controller/movieController");
+    deleteByID,
+    updateMovieByID } = require("./controller/movieController");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,6 +14,10 @@ router.get("/get-all-movie", getAllMovie);
 
 router.post("/create-movie", createMovie);
 
-router.delete("/delete-by-id", deleteByID);
+router.delete("/delete-movie", deleteByID);
+
+router.put('/update-by-id/:id', updateMovieByID)
+
+
 
 module.exports = router;

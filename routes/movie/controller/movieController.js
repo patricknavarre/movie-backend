@@ -46,6 +46,25 @@ module.exports = {
           res.status(500).json({ error: e.message });
       }
   },
+  updateMovieByID: async (req, res) => {
+    try {
+      let updatedMovie = await Movie.findByIdAndUpdate(
+        { _id: req.params.id },
+        req.body,
+        { new: true }
+      );
+  
+      res.status(200).json({
+        message: "successfully updated",
+        updatedMovie: updatedMovie,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "error",
+        errorMessage: error.message,
+      });
+    }
+  },
 
 
 };
